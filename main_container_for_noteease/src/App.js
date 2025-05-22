@@ -64,6 +64,23 @@ function App() {
         : note
     ));
   };
+  
+  /**
+   * Delete a note
+   * @param {number} noteId - ID of the note to delete
+   */
+  const handleDeleteNote = (noteId) => {
+    // Filter out the deleted note
+    const updatedNotes = notes.filter(note => note.id !== noteId);
+    setNotes(updatedNotes);
+    
+    // If the deleted note was the currently selected note, select another note
+    if (currentNoteId === noteId) {
+      // Select the first available note, or null if no notes remain
+      const nextNoteId = updatedNotes.length > 0 ? updatedNotes[0].id : null;
+      setCurrentNoteId(nextNoteId);
+    }
+  };
 
   return (
     <ThemeProvider>
@@ -79,6 +96,7 @@ function App() {
           <NoteEditor 
             currentNote={currentNote}
             onUpdateNote={handleUpdateNote}
+            onDeleteNote={handleDeleteNote}
           />
         </div>
       </div>
