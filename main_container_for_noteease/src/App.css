@@ -1,32 +1,44 @@
 /* Theme Variables */
 :root {
   /* Light Theme (default) */
-  --background-light: #f0f0f0;
+  --background-light: #f5f5f7;
   --paper-light: #ffffff;
-  --text-primary-light: #333333;
-  --text-secondary-light: #666666;
-  --accent-light: #4a90e2;
-  --border-light: #e0e0e0;
+  --text-primary-light: #2c3e50;
+  --text-secondary-light: #7f8c8d;
+  --accent-light: #9b59b6;
+  --border-light: #ecf0f1;
   --shadow-light: rgba(0, 0, 0, 0.1);
   --sidebar-light: #f9f9f9;
   --header-light: #ffffff;
-  --button-primary-light: #4a90e2;
+  --button-primary-light: #9b59b6;
   --button-text-light: #ffffff;
   --button-danger-light: #e74c3c;
 
   /* Dark Theme */
-  --background-dark: #222222;
-  --paper-dark: #333333;
+  --background-dark: #1e1e2e;
+  --paper-dark: #2d2d3f;
   --text-primary-dark: #f0f0f0;
-  --text-secondary-dark: #cccccc;
-  --accent-dark: #5c9aef;
-  --border-dark: #444444;
+  --text-secondary-dark: #b8b8c0;
+  --accent-dark: #bd93f9;
+  --border-dark: #3d3d4f;
   --shadow-dark: rgba(0, 0, 0, 0.3);
-  --sidebar-dark: #2c2c2c;
-  --header-dark: #292929;
-  --button-primary-dark: #5c9aef;
+  --sidebar-dark: #252538;
+  --header-dark: #252538;
+  --button-primary-dark: #bd93f9;
   --button-text-dark: #ffffff;
-  --button-danger-dark: #e74c3c;
+  --button-danger-dark: #ff5555;
+  
+  /* Gradients */
+  --gradient-light: linear-gradient(135deg, #f5f5f7 0%, #e4e4ec 100%);
+  --gradient-dark: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+  --gradient-accent-light: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+  --gradient-accent-dark: linear-gradient(135deg, #bd93f9 0%, #9c64fe 100%);
+  --gradient-header-light: linear-gradient(to bottom, #ffffff, #f5f5f7);
+  --gradient-header-dark: linear-gradient(to bottom, #252538, #1e1e2e);
+  --gradient-sidebar-light: linear-gradient(to right, #f1f1f5, #f9f9f9);
+  --gradient-sidebar-dark: linear-gradient(to right, #252538, #2a2a40);
+  --gradient-editor-light: linear-gradient(to bottom, #ffffff, #fafafa);
+  --gradient-editor-dark: linear-gradient(to bottom, #2d2d3f, #292937);
 }
 
 /* Apply theme based on data-theme attribute */
