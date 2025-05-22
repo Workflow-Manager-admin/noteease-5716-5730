@@ -35,7 +35,12 @@ const NoteEditor = ({ currentNote, onUpdateNote, onDeleteNote }) => {
         />
         <div className="editor-actions">
           <button className="editor-btn save-btn">Save</button>
-          <button className="editor-btn delete-btn">Delete</button>
+          <button 
+            className="editor-btn delete-btn" 
+            onClick={() => onDeleteNote(currentNote.id)}
+          >
+            Delete
+          </button>
         </div>
       </div>
       
