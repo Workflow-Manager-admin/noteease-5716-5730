@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { ThemeProvider } from './context/ThemeContext';
 import Header from './components/Header';
@@ -10,13 +10,76 @@ import NoteEditor from './components/NoteEditor';
  * Main application component for NoteEase
  */
 function App() {
+  // Initial notes data
+  const [notes, setNotes] = useState([
+    { id: 1, title: 'Welcome Note', content: 'Welcome to NoteEase! This is a simple note-taking application with a skeuomorphic design. Try toggling between dark and light themes using the button in the header.' },
+    { id: 2, title: 'Shopping List', content: 'Milk, Eggs, Bread, Cheese, Vegetables, Fruits, Chocolate' },
+    { id: 3, title: 'Meeting Notes', content: 'Team meeting agenda: Project updates, New features discussion, Timeline review, Q&A session' },
+    { id: 4, title: 'Ideas', content: 'App features brainstorming: Cloud sync, Rich text editor, Tags and categories, Search functionality, Dark mode' },
+  ]);
+  
+  // Track the current selected note
+  const [currentNoteId, setCurrentNoteId] = useState(1);
+  
+  // Get current note object based on ID
+  const currentNote = notes.find(note => note.id === currentNoteId) || null;
+  
+  /**
+   * Handle selection of a note
+   * @param {number} noteId - ID of the note to select
+   */
+  const handleSelectNote = (noteId) => {
+    setCurrentNoteId(noteId);
+  };
+  
+  /**
+   * Create a new note with default content
+   */
+  const handleAddNote = () => {
+    // Find the maximum ID to ensure unique IDs
+    const maxId = Math.max(...notes.map(note => note.id), 0);
+    
+    // Create new note
+    const newNote = {
+      id: maxId + 1,
+      title: 'New Note',
+      content: 'Start typing your note here...'
+    };
+    
+    // Add to notes array and select it
+    setNotes([...notes, newNote]);
+    setCurrentNoteId(newNote.id);
+  };
+  
+  /**
+   * Update a note's content
+   * @param {number} noteId - ID of the note to update
+   * @param {string} field - Field to update (title or content)
+   * @param {string} value - New value for the field
+   */
+  const handleUpdateNote = (noteId, field, value) => {
+    setNotes(notes.map(note => 
+      note.id === noteId 
+        ? { ...note, [field]: value } 
+        : note
+    ));
+  };
+
   return (
     <ThemeProvider>
       <div className="noteease-app">
         <Header />
         <div className="main-container">
-          <NotesSidebar />
-          <NoteEditor />
+          <NotesSidebar 
+            notes={notes} 
+            activeNoteId={currentNoteId}
+            onSelectNote={handleSelectNote}
+            onAddNote={handleAddNote}
+          />
+          <NoteEditor 
+            currentNote={currentNote}
+            onUpdateNote={handleUpdateNote}
+          />
         </div>
       </div>
     </ThemeProvider>
