@@ -55,6 +55,11 @@
   --button-primary: var(--button-primary-light);
   --button-text: var(--button-text-light);
   --button-danger: var(--button-danger-light);
+  --gradient-main: var(--gradient-light);
+  --gradient-accent: var(--gradient-accent-light);
+  --gradient-header: var(--gradient-header-light);
+  --gradient-sidebar: var(--gradient-sidebar-light);
+  --gradient-editor: var(--gradient-editor-light);
 }
 
 :root[data-theme='dark'] {
@@ -70,6 +75,11 @@
   --button-primary: var(--button-primary-dark);
   --button-text: var(--button-text-dark);
   --button-danger: var(--button-danger-dark);
+  --gradient-main: var(--gradient-dark);
+  --gradient-accent: var(--gradient-accent-dark);
+  --gradient-header: var(--gradient-header-dark);
+  --gradient-sidebar: var(--gradient-sidebar-dark);
+  --gradient-editor: var(--gradient-editor-dark);
 }
 
 /* Base app styling */
