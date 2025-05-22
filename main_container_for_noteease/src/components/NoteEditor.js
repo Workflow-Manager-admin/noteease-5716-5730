@@ -1,16 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTheme } from '../context/ThemeContext';
 
 // PUBLIC_INTERFACE
 /**
  * Main note editing component
+ * @param {Object} props - Component props
+ * @param {Object} props.currentNote - Current note object to display and edit
+ * @param {Function} props.onUpdateNote - Function to call when note content changes
  */
-const NoteEditor = () => {
+const NoteEditor = ({ currentNote, onUpdateNote }) => {
   const { theme } = useTheme();
   
-  // Placeholder state for note content
-  const [title, setTitle] = useState('Welcome Note');
-  const [content, setContent] = useState('Welcome to NoteEase! This is a simple note-taking application with a skeuomorphic design. Try toggling between dark and light themes using the button in the header.');
+  // If no note is selected or available
+  if (!currentNote) {
+    return (
+      <div className={`note-editor ${theme}`}>
+        <div className="editor-content" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <p>No note selected. Please select a note from the sidebar or create a new one.</p>
+        </div>
+      </div>
+    );
+  }
   
   return (
     <div className={`note-editor ${theme}`}>
@@ -18,8 +28,8 @@ const NoteEditor = () => {
         <input
           type="text"
           className="note-title-input"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={currentNote.title}
+          onChange={(e) => onUpdateNote(currentNote.id, 'title', e.target.value)}
           placeholder="Note Title"
         />
         <div className="editor-actions">
@@ -31,8 +41,8 @@ const NoteEditor = () => {
       <div className="editor-content">
         <textarea
           className="note-content-input"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
+          value={currentNote.content}
+          onChange={(e) => onUpdateNote(currentNote.id, 'content', e.target.value)}
           placeholder="Start typing your note here..."
         />
       </div>
