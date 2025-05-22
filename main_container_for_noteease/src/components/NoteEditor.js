@@ -7,8 +7,9 @@ import { useTheme } from '../context/ThemeContext';
  * @param {Object} props - Component props
  * @param {Object} props.currentNote - Current note object to display and edit
  * @param {Function} props.onUpdateNote - Function to call when note content changes
+ * @param {Function} props.onDeleteNote - Function to call when note is deleted
  */
-const NoteEditor = ({ currentNote, onUpdateNote }) => {
+const NoteEditor = ({ currentNote, onUpdateNote, onDeleteNote }) => {
   const { theme } = useTheme();
   
   // If no note is selected or available
